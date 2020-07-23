@@ -20,3 +20,15 @@ yarn build
 yarn start
 ```
 
+
+
+### 技术栈
+
+- next
+- react
+- redux
+- redux-actions
+- redux-logger
+- redux-observable
+- rxjs
+- antd
