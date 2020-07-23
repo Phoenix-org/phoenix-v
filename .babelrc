@@ -1,0 +1,24 @@
+{
+  "presets": [
+    ["next/babel", {
+      "preset-env": {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "ie > 9"
+          ]
+        }
+      }
+    }
+    ]
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
+      }
+    ]
+  ]
+}
