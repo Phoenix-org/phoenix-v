@@ -1,13 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Button } from "antd";
-import styles from "./style.scss";
-import {
-  increment,
-  decrement,
-  autoIncrement,
-  autoStop,
-} from "../../redux/epics/counter";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Button } from 'antd';
+import styles from './style.scss';
+import { increment, decrement, autoIncrement, autoStop } from '../../redux/epics/counter';
 
 interface AProps {
   dispatch: any;

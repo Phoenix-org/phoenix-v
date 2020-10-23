@@ -6,7 +6,7 @@
 
 ### Usage
 
-```
+```bash
 # 安装包依赖
 yarn install # or npm
 
@@ -18,6 +18,18 @@ yarn build
 
 # 启动生产环境
 yarn start
+```
+
+
+
+### CI/CD
+
+```bash
+# 安装 drone
+brew install drone-cli
+
+# 本地运行测试
+drone exec
 ```
 
 

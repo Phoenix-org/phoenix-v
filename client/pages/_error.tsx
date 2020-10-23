@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class Error extends React.Component<any, any> {
   static getInitialProps({ res, err }) {
@@ -11,7 +11,7 @@ class Error extends React.Component<any, any> {
       <p>
         {this.props.statusCode
           ? `An error ${this.props.statusCode} occurred on server`
-          : "An error occurred on client"}
+          : 'An error occurred on client'}
       </p>
     );
   }

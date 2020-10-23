@@ -1,18 +1,13 @@
-import {
-  createAction,
-  handleActions,
-  combineActions,
-  createActions,
-} from "redux-actions";
+import { createAction, handleActions, combineActions, createActions } from 'redux-actions';
 
 const initState = {
   count: 0,
 };
 
-const INCREMENT = "$INCREMENT";
-const DECREMENT = "$DECREMENT";
-const AUTOINCREMENT = "$AUTOINCREMENT";
-const STOPINCREMENT = "$STOPINCREMENT";
+const INCREMENT = '$INCREMENT';
+const DECREMENT = '$DECREMENT';
+const AUTOINCREMENT = '$AUTOINCREMENT';
+const STOPINCREMENT = '$STOPINCREMENT';
 
 export const $increment = createAction(INCREMENT);
 export const $decrement = createAction(DECREMENT);
@@ -34,7 +29,7 @@ const counter = handleActions(
       return { ...state, count: state.count };
     },
   },
-  initState
+  initState,
 );
 
 export default {
