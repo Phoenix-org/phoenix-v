@@ -5,7 +5,7 @@ import withRedux from 'next-redux-wrapper';
 import makeStore from '../redux';
 import '../styles/index.scss';
 
-class MyApp extends App<any, any> {
+class MyApp extends App<any> {
   static async getInitialProps({ Component, ctx }) {
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 

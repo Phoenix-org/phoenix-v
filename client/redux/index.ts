@@ -4,7 +4,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import reducers from './reducers';
 import rootEpic from './epics';
 
-const configureStore = initialState => {
+const configureStore = (initialState: any) => {
   const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
