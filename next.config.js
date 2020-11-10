@@ -1,14 +1,15 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const withTM = require('next-transpile-modules');
+const path = require('path');
 
 const conf = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // loaders config
     defaultLoaders.cssLoader = {
-      loader: "css-loader",
+      loader: 'css-loader',
       options: {
         modules: {
-          localIdentName: "[local]__[hash:base64:5]",
+          localIdentName: '[local]__[hash:base64:5]',
         },
         url: true,
         import: false,
@@ -16,7 +17,7 @@ const conf = {
     };
 
     defaultLoaders.sassLoader = {
-      loader: "sass-loader",
+      loader: 'sass-loader',
       options: {
         modules: true,
         url: true,
@@ -24,7 +25,7 @@ const conf = {
       },
     };
 
-    defaultLoaders.postcssLoader = { loader: "postcss-loader" };
+    defaultLoaders.postcssLoader = { loader: 'postcss-loader' };
 
     // rules
     if (isServer) {
@@ -33,32 +34,29 @@ const conf = {
       config.externals = [
         (context, request, callback) => {
           if (request.match(antStyles)) return callback();
-          if (typeof origExternals[0] === "function") {
+          if (typeof origExternals[0] === 'function') {
             origExternals[0](context, request, callback);
           } else {
             callback();
           }
         },
-        ...(typeof origExternals[0] === "function" ? [] : origExternals),
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
       ];
 
       config.module.rules.unshift({
         test: antStyles,
-        use: "null-loader",
+        use: 'null-loader',
       });
     }
 
     // antd(css-loader postcss-loader) rules
     config.module.rules.push({
       test: /\.css$/,
-      include: [
-        path.resolve(__dirname, "./client/"),
-        path.resolve(__dirname, "./node_modules/"),
-      ],
+      include: [path.resolve(__dirname, './client/'), path.resolve(__dirname, './node_modules/')],
       use: [
         MiniCssExtractPlugin.loader,
         {
-          loader: "css-loader",
+          loader: 'css-loader',
           options: {
             modules: false,
             url: true,
@@ -72,7 +70,7 @@ const conf = {
     // scss rules
     config.module.rules.push({
       test: /\.(scss|sass)$/,
-      include: [path.resolve(__dirname, "./client/")],
+      include: [path.resolve(__dirname, './client/')],
       use: [
         MiniCssExtractPlugin.loader,
         defaultLoaders.cssLoader,
@@ -84,13 +82,11 @@ const conf = {
     // plugins
     config.plugins.push(
       new MiniCssExtractPlugin({
-        filename: dev
-          ? "static/chunks/[name].css"
-          : "static/chunks/[name].[contenthash:8].css",
+        filename: dev ? 'static/chunks/[name].css' : 'static/chunks/[name].[contenthash:8].css',
         chunkFilename: dev
-          ? "static/chunks/[name].chunk.css"
-          : "static/chunks/[name].[contenthash:8].chunk.css",
-      })
+          ? 'static/chunks/[name].chunk.css'
+          : 'static/chunks/[name].[contenthash:8].chunk.css',
+      }),
     );
 
     return config;
@@ -102,7 +98,8 @@ const conf = {
   // },
 };
 
+// https://github.com/vercel/next.js/issues/706
 module.exports = {
-  pageExtensions: ["jsx", "js", "tsx", "ts"],
+  pageExtensions: ['jsx', 'js', 'tsx', 'ts'],
   ...conf,
 };
