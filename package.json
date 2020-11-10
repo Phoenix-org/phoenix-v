@@ -64,8 +64,6 @@
     "postcss-loader": "^3.0.0",
     "prettier": "^2.1.2",
     "sass-loader": "^7.3.1",
-    "tslint": "^5.19.0",
-    "tslint-react": "^4.0.0",
     "typescript": "^3.9.7"
   },
   "browserslist": [
@@ -80,7 +78,7 @@
   },
   "lint-staged": {
     "*.{tsx,ts,js,jsx}": [
-      "lint"
+      "yarn lint"
     ]
   }
 }
