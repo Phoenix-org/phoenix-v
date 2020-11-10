@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import styles from './style.scss';
@@ -9,40 +9,36 @@ interface AProps {
   count: number;
 }
 
-class A extends React.Component<AProps, any> {
-  constructor(props) {
-    super(props);
-  }
+const A: React.FC<AProps> = props => {
+  const { count, dispatch } = props;
 
-  addClick = async () => {
-    this.props.dispatch(increment({ count: 20 }));
+  const addClick = async () => {
+    dispatch(increment({ count: 20 }));
   };
 
-  lowclick = () => {
-    this.props.dispatch(decrement());
+  const lowclick = () => {
+    dispatch(decrement());
   };
 
-  startAdd = () => {
-    this.props.dispatch(autoIncrement());
+  const startAdd = () => {
+    dispatch(autoIncrement());
   };
 
-  endAdd = () => {
-    this.props.dispatch(autoStop());
+  const endAdd = () => {
+    dispatch(autoStop());
   };
 
-  render() {
-    return (
-      <div className={styles.main}>
-        <div>计数器： {this.props.count}</div>
-        <Button onClick={this.addClick}>+</Button>
-        <Button onClick={this.lowclick}>-</Button>
-        <Button type="primary" onClick={this.startAdd}>
-          start
-        </Button>
-        <Button onClick={this.endAdd}>stop</Button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={styles.main}>
+      <div>计数器： {count}</div>
+      <Button onClick={addClick}>+</Button>
+      <Button onClick={lowclick}>-</Button>
+      <Button type="primary" onClick={startAdd}>
+        start
+      </Button>
+      <Button onClick={endAdd}>stop</Button>
+    </div>
+  );
+};
 
 export default connect((state: any) => state.counter)(A);
